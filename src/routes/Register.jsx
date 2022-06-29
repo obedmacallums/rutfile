@@ -26,10 +26,9 @@ const Register = () => {
       await registerUser(data.email, data.password);
       navigate("/");
     } catch (error) {
-            setError("firebase", {
-            message: firebaseErrors(error.code),
-          });
-        console.log(error.code);
+      const { code, message } = firebaseErrors(error);
+      setError(code, { message });
+      console.log(error.code);
     }
   };
 
@@ -37,7 +36,6 @@ const Register = () => {
     <>
       <h1>Register</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <FormError error={errors.firebase}/>
          <FormInput
         type="email"
         placeholder="ingrese su Email"
