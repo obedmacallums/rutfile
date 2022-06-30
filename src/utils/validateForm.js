@@ -15,7 +15,7 @@ export const validateForm = () => {
 
         emptyValidate: (v)=>{
             if (v.trim()) return true;
-            else return "no seas payaso escribe algo";
+            else return "no seas 🤡 escribe algo";
         },
         equalValidate: (value)=>{
             return {equals: (v) => v === value || "No coinciden las contraseñas",}

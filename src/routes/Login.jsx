@@ -6,6 +6,7 @@ import firebaseErrors from "../utils/firebaseErrors";
 import {validateForm} from "../utils/validateForm"
 import FormError from "../components/FormError";
 import FormInput from "../components/FormInput";
+import { Button, Checkbox, Label, TextInput } from "flowbite-react";
 
 const Login = () => {
 
@@ -59,7 +60,11 @@ const onSubmit = async (data) => {
         </FormInput>
 
         <button type="submit">Iniciar</button>
+
+
     </form>
+
+
     </>
   );
 };
