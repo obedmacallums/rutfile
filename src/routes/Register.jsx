@@ -6,6 +6,8 @@ import firebaseErrors from "../utils/firebaseErrors";
 import {validateForm} from "../utils/validateForm"
 import FormError from "../components/FormError";
 import FormInput from "../components/FormInput";
+import Title from "../components/Title";
+import { Button } from "flowbite-react";
 
 
 const Register = () => {
@@ -34,15 +36,16 @@ const Register = () => {
 
   return (
     <>
-      <h1>Register</h1>
+      <Title title="Registro" />
       <form onSubmit={handleSubmit(onSubmit)}>
          <FormInput
         type="email"
-        placeholder="ingrese su Email"
+        label="Ingrese su Email"
         {...register("email", {
           required,
           pattern: patternEmail,
         })}
+        error={errors.email}
         >
         <FormError error={errors.email}/>
         </FormInput>
@@ -53,7 +56,8 @@ const Register = () => {
           minLength: minLength6,
           validate: emptyValidate,
         })}
-        placeholder="ingrese su password"        
+        label="Ingrese su clave"
+        error={errors.password}
         >
         <FormError error={errors.password}/>
         </FormInput>
@@ -63,12 +67,16 @@ const Register = () => {
         {...register("repassword", {
           validate: equalValidate(getValues("password")),
         })}
-        placeholder="Repita su password"        
+        label="Repita su clave"
+        error={errors.repassword}      
         >
         <FormError error={errors.repassword}/>
         </FormInput>
 
-        <button type="submit">Registar</button>
+        
+        <Button gradientMonochrome="purple" type="submit" pill={true}>
+         Registar
+        </Button>
       </form>
     </>
   );

@@ -7,6 +7,7 @@ import {validateForm} from "../utils/validateForm"
 import FormError from "../components/FormError";
 import FormInput from "../components/FormInput";
 import { Button, Checkbox, Label, TextInput } from "flowbite-react";
+import Title from "../components/Title";
 
 const Login = () => {
 
@@ -35,16 +36,17 @@ const onSubmit = async (data) => {
 
   return (
     <>
-      <h1>Login</h1>
+      <Title title="Iniciar sesión" />
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormInput
         type="email"
-        placeholder="ingrese su Email"
         {...register("email", {
           required,
           pattern: patternEmail,
         })}
+        label="Ingrese su email"
+        error={errors.email}
         >
         <FormError error={errors.email}/>
         </FormInput>
@@ -54,12 +56,15 @@ const onSubmit = async (data) => {
           minLength: minLength6,
           validate: emptyValidate,
         })}
-        placeholder="ingrese su password"        
+        label="Ingrese su clave" 
+        error={errors.password}       
         >
         <FormError error={errors.password}/>
         </FormInput>
 
-        <button type="submit">Iniciar</button>
+        <Button gradientMonochrome="purple" type="submit" pill={true}>
+         Iniciar
+        </Button>
 
 
     </form>
