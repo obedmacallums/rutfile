@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom"
 
 
-const FormLayoutContainer = () => {
+const FormLayout = () => {
   return (
     <div className="w-96 mx-auto mt-20">
 
@@ -11,4 +11,4 @@ const FormLayoutContainer = () => {
   )
 }
 
-export default FormLayoutContainer
+export default FormLayout
