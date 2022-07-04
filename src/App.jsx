@@ -1,50 +1,49 @@
-import { Routes, Route } from "react-router-dom"
-import Navbar from "./components/Navbar"
-import Home from "./routes/Home"
-import Login from "./routes/Login"
+import { Routes, Route } from "react-router-dom";
+import { useContext } from "react";
 
-import Register from "./routes/Register"
-import { useContext } from "react"
-import { UserContext } from "./context/UserProvider"
-import FormLayout from "./layouts/FormLayout"
-import NotFound from "./routes/NotFound"
-import RequireAuthLayout from "./layouts/RequireAuthLayout"
-import Perfil from "./routes/Perfil"
+import { UserContext } from "./context/UserProvider";
+
+import Navbar from "./components/Navbar";
 
 
+import FormLayout from "./layouts/FormLayout";
+import RequireAuthLayout from "./layouts/RequireAuthLayout";
 
-const App = ()=> {
 
-  const {user} = useContext(UserContext)
-  if (user === false){
+import Home from "./routes/Home";
+import Login from "./routes/Login";
+import NotFound from "./routes/NotFound";
+import Register from "./routes/Register";
+import Search from "./routes/Search";
+import About from "./routes/About";
+import Profile from "./routes/Profile";
 
-    return (
-      <p>Loading...</p>
-
-    )
+const App = () => {
+  const { user } = useContext(UserContext);
+  if (user === false) {
+    return <p>Loading...</p>;
   }
 
   return (
     <>
-    <Navbar/>
-    <Routes>
-    
-      <Route path="/" element={<RequireAuthLayout/>}>
-        <Route path="/" element={<Home/>}/>
-        <Route path="/perfil" element={<Perfil/>}/>
-      </Route>
+      <Navbar />
+      <Routes>
+        <Route path="/about" element={<About />} />
+        <Route path="*" element={<NotFound />} />
 
+        <Route path="/" element={<RequireAuthLayout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/search" element={<Search />} />
+        </Route>
 
-      <Route path="/" element={<FormLayout/>}>
-        <Route path="/login" element={<Login/>}/>
-        <Route path="/register" element={<Register/>}/>
-      </Route>
-      
-      <Route path="*" element={<NotFound/>}/>
-      
-    </Routes>
+        <Route path="/" element={<FormLayout />}>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Route>
+      </Routes>
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
