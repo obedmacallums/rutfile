@@ -20,6 +20,9 @@ const firebaseErrors = (error) => {
     case "auth/wrong-password":
         return { code: "password", message: "Contraseña incorrecta" };
 
+    case "auth/too-many-requests":
+        return { code: "password", message: "Has fallado muchas veces! intentalo mas tarde" };
+
     default:
         return { code: "email", message: "Error, intentelo más tarde" };
 }

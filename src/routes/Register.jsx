@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { UserContext } from "../context/UserProvider";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -7,11 +7,12 @@ import {validateForm} from "../utils/validateForm"
 import FormError from "../components/FormError";
 import FormInput from "../components/FormInput";
 import Title from "../components/Title";
-import { Button } from "flowbite-react";
+import { Button, Spinner } from "flowbite-react";
 
 
 const Register = () => {
   const { registerUser } = useContext(UserContext);
+  const [loading, setLoading] = useState(false)
   const navigate = useNavigate();
   const {
     register,
@@ -25,12 +26,15 @@ const Register = () => {
 
   const onSubmit = async (data) => {
     try {
+      setLoading(true)
       await registerUser(data.email, data.password);
       navigate("/");
     } catch (error) {
       const { code, message } = firebaseErrors(error);
       setError(code, { message });
       console.log(error.code);
+    }finally{
+      setLoading(false)
     }
   };
 
@@ -74,9 +78,21 @@ const Register = () => {
         </FormInput>
 
         
+        { 
+        loading ? ( 
+          <Button gradientMonochrome="purple" pill={true}>
+          <Spinner aria-label="Alternate spinner button example" />
+          <span className="pl-3">
+            Registrando...
+          </span>
+        </Button>)
+         
+         :(
         <Button gradientMonochrome="purple" type="submit" pill={true}>
-         Registar
+         Registrar
         </Button>
+        )
+        }
       </form>
     </>
   );

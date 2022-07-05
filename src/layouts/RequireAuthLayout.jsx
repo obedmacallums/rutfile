@@ -12,7 +12,7 @@ const RequireAuthLayout = () => {
 
   return (
 
-    <div className="w-96 mx-auto mt-20">
+    <div className="container mx-auto">
 
     <Outlet/>
    
